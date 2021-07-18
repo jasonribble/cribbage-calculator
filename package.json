@@ -1,0 +1,28 @@
+{
+  "name": "cribbage-calculator",
+  "version": "0.0.1",
+  "description": "A naive cribbage calculator",
+  "main": "/src/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonribble.com/cribbage-calculator.git"
+  },
+  "author": "Jason Ribble",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonribble.com/cribbage-calculator/issues"
+  },
+  "homepage": "https://github.com/jasonribble.com/cribbage-calculator#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3"
+  }
+}
