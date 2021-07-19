@@ -1,8 +1,8 @@
-import { knobs } from "../src/app";
+import { flush, nobs } from "../src/app";
 import { Hand } from "../src/types"
 
-it('calculates knobs properly', () => {
-  const knobsHand: Hand = [
+it('calculates nobs properly', () => {
+  const nobsHand: Hand = [
     {
       suit: 'C',
       value: 8,
@@ -23,13 +23,9 @@ it('calculates knobs properly', () => {
       suit: 'S',
       value: 7,
     },
-    {
-      suit: 'C',
-      value: 3,
-    },
   ]
 
-  const cutKnobsHand: Hand = [
+  const cutnobsHand: Hand = [
     {
       suit: 'C',
       value: 11,
@@ -50,13 +46,86 @@ it('calculates knobs properly', () => {
       suit: 'S',
       value: 7,
     },
-    {
-      suit: 'C',
-      value: 3,
-    },
   ]
 
 
-  expect(knobs(knobsHand)).toBe(1)
-  expect(knobs(cutKnobsHand)).toBe(0)
+  expect(nobs(nobsHand)).toBe(1)
+  expect(nobs(cutnobsHand)).toBe(0)
+})
+
+it('calculates flushes', () => {
+
+  const fullFlushHand: Hand = [
+    {
+      suit: 'C',
+      value: 8,
+    },
+    {
+      suit: 'C',
+      value: 11
+    },
+    {
+      suit: 'C',
+      value: 5,
+    },
+    {
+      suit: 'C',
+      value: 11,
+    },
+    {
+      suit: 'C',
+      value: 7,
+    },
+  ]
+
+  const fourFlushHand: Hand = [
+    {
+      suit: 'C',
+      value: 8,
+    },
+    {
+      suit: 'C',
+      value: 11
+    },
+    {
+      suit: 'C',
+      value: 5,
+    },
+    {
+      suit: 'C',
+      value: 11,
+    },
+    {
+      suit: 'H',
+      value: 7,
+    },
+  ]
+
+  const noFlushHand: Hand = [
+    {
+      suit: 'C',
+      value: 8,
+    },
+    {
+      suit: 'C',
+      value: 11
+    },
+    {
+      suit: 'H',
+      value: 5,
+    },
+    {
+      suit: 'D',
+      value: 11,
+    },
+    {
+      suit: 'S',
+      value: 7,
+    },
+  ]
+
+  expect(flush(fullFlushHand)).toBe(5)
+  expect(flush(noFlushHand)).toBe(0)
+  expect(flush(fourFlushHand)).toBe(4)
+
 })

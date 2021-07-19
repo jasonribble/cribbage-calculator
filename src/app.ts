@@ -1,9 +1,9 @@
-import { Hand, Point } from "./types"
+import { Hand, Point, Suit } from "./types"
 
 function calculateHand(hand: Hand): Point {
   let points: Point;
 
-  points += knobs(hand)
+  points += nobs(hand)
   points += flush(hand)
   points += kinds(hand)
   points += straights(hand)
@@ -12,20 +12,43 @@ function calculateHand(hand: Hand): Point {
   return points
 }
 
-export function knobs(hand: Hand): Point {
+export function nobs(hand: Hand): Point {
   const [cut, ...fiveCards] = hand
 
-  let knobs = 0
+  let nobs = 0
 
-  for (let card of fiveCards)
-    if (card.value == 11 && card.suit == cut.suit)
-      knobs++
+  for (let card of fiveCards) {
+    if (card.value == 11 && card.suit == cut.suit) {
+      nobs++
+    }
+  }
 
-  return knobs
+  return nobs
 }
 
-function flush(hand: Hand): Point {
-  throw new Error("Function not implemented.")
+export function flush(hand: Hand): Point {
+  const map : Record<Suit, number> = {
+    'C': 0,
+    'D': 0,
+    'H': 0,
+    'S': 0
+ }
+  let hasFlush: boolean
+  let flushSuit: Suit
+
+  // console.log(map[hand[0].suit]++)
+  for (const card of hand) {
+    map[card.suit] = ++map[card.suit]
+
+    if (map[card.suit] >= 4) {
+      flushSuit = card.suit
+      hasFlush = true
+    }
+  }
+
+  return hasFlush
+    ? map[flushSuit]
+    : 0
 }
 
 function kinds(hand: Hand): Point {
