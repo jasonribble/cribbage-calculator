@@ -4,8 +4,8 @@
   "description": "A naive cribbage calculator",
   "main": "/src/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "test": "jest"
+    "start": "tsc && node dist/src/app.js",
+    "test": "tsc && jest"
   },
   "repository": {
     "type": "git",
