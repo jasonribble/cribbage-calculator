@@ -1,52 +1,10 @@
 import { flush, nobs, kinds } from "../src/app";
-import { Hand } from "../src/types"
+import { FiveCards, Hand } from "../src/types"
 
 describe('Nobs', () => {
-  const nobsHand: Hand = [
-    {
-      suit: 'C',
-      value: 8,
-    },
-    {
-      suit: 'C',
-      value: 11
-    },
-    {
-      suit: 'H',
-      value: 5,
-    },
-    {
-      suit: 'D',
-      value: 11,
-    },
-    {
-      suit: 'S',
-      value: 7,
-    },
-  ]
+  const nobsHand: FiveCards = new Hand(['C8','C1','H5','D1', 'S7'])
 
-  const cutnobsHand: Hand = [
-    {
-      suit: 'C',
-      value: 11,
-    },
-    {
-      suit: 'C',
-      value: 8
-    },
-    {
-      suit: 'H',
-      value: 5,
-    },
-    {
-      suit: 'D',
-      value: 11,
-    },
-    {
-      suit: 'S',
-      value: 7,
-    },
-  ]
+  const cutnobsHand: FiveCards = new Hand([ 'C11', 'C8', 'H5', 'D11', 'S7'])
 
   it('0 points if the cut is a Jack', () => {
     expect(nobs(cutnobsHand)).toBe(0)
@@ -60,74 +18,11 @@ describe('Nobs', () => {
 
 describe('Flushes', () => {
 
-  const fullFlushHand: Hand = [
-    {
-      suit: 'C',
-      value: 8,
-    },
-    {
-      suit: 'C',
-      value: 11
-    },
-    {
-      suit: 'C',
-      value: 5,
-    },
-    {
-      suit: 'C',
-      value: 11,
-    },
-    {
-      suit: 'C',
-      value: 7,
-    },
-  ]
+  const fullFlushHand: FiveCards = new Hand(['8C', '1C' '5C', '11C', '7C' ])
 
-  const fourFlushHand: Hand = [
-    {
-      suit: 'C',
-      value: 8,
-    },
-    {
-      suit: 'C',
-      value: 11
-    },
-    {
-      suit: 'C',
-      value: 5,
-    },
-    {
-      suit: 'C',
-      value: 11,
-    },
-    {
-      suit: 'H',
-      value: 7,
-    },
-  ]
+  const fourFlushHand: FiveCards = new Hand([ '8C', '11C' '5C', '12C', '7H' ])
 
-  const noFlushHand: Hand = [
-    {
-      suit: 'C',
-      value: 8,
-    },
-    {
-      suit: 'C',
-      value: 11
-    },
-    {
-      suit: 'H',
-      value: 5,
-    },
-    {
-      suit: 'D',
-      value: 11,
-    },
-    {
-      suit: 'S',
-      value: 7,
-    },
-  ]
+  const noFlushHand: FiveCards = new Hand([ '8C','11C' ,'5H', '11D', '7S'])
 
 
   it('0 points if there is not 4 or 5 of the same suit', () => {
@@ -144,7 +39,7 @@ describe('Flushes', () => {
 })
 
 describe('Kinds', () => {
-  const threeOfAKind: Hand = [
+  const threeOfAKind: FiveCards = [
     {
       suit: 'H',
       value: 3,
@@ -167,7 +62,7 @@ describe('Kinds', () => {
     },
   ]
 
-  const fourOfAKind: Hand = [
+  const fourOfAKind: FiveCards = [
     {
       suit: 'H',
       value: 10,
@@ -190,7 +85,7 @@ describe('Kinds', () => {
     },
   ]
 
-  const twoPairs: Hand = [
+  const twoPairs: FiveCards = [
     {
       suit: 'H',
       value: 3,

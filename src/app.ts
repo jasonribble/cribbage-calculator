@@ -1,7 +1,7 @@
 import { group } from "./helper";
-import { Hand, Point, Suit } from "./types"
+import { FiveCards, Point, Suit } from "./types"
 
-function calculateHand(hand: Hand): Point {
+function calculateHand(hand: FiveCards): Point {
   let points: Point;
 
   points += nobs(hand)
@@ -13,12 +13,12 @@ function calculateHand(hand: Hand): Point {
   return points
 }
 
-export function nobs(hand: Hand): Point {
-  const [cut, ...fiveCards] = hand
+export function nobs(hand: FiveCards): Point {
+  const [cut, ...fourCards] = hand
 
   let nobs = 0
 
-  for (let card of fiveCards) {
+  for (let card of fourCards) {
     if (card.value == 11 && card.suit == cut.suit) {
       nobs++
     }
@@ -27,7 +27,7 @@ export function nobs(hand: Hand): Point {
   return nobs
 }
 
-export function flush(hand: Hand): Point {
+export function flush(hand: FiveCards): Point {
   const map : Record<Suit, number> = {
     'C': 0,
     'D': 0,
@@ -53,7 +53,7 @@ export function flush(hand: Hand): Point {
     : 0
 }
 
-export function kinds(hand: Hand): Point {
+export function kinds(hand: FiveCards): Point {
   let score = 0;
   const values = hand.map(card => card.value)
   const sortedValues = values.sort((a, b) => a - b)
@@ -76,10 +76,10 @@ export function kinds(hand: Hand): Point {
   return score;
 }
 
-function straights(hand: Hand): Point {
+function straights(hand: FiveCards): Point {
   throw new Error("Function not implemented.")
 }
 
-function fifteens(hand: Hand): Point {
+function fifteens(hand: FiveCards): Point {
   throw new Error("Function not implemented.")
 }
