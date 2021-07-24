@@ -1,28 +1,28 @@
-import { group } from "./helper";
-import { FiveCards, Point, Suit } from "./types"
+import { group } from "./helper"
+import { FiveCards, Hand, Point, Suit } from "./types"
 
 function calculateHand(hand: FiveCards): Point {
-  let points: Point;
+  let points: Point
 
   points += nobs(hand)
   points += flush(hand)
   points += kinds(hand)
-  points += straights(hand)
-  points += fifteens(hand)
+  // points += fifteens(hand)
+  // points += straights(hand)
 
   return points
 }
+
+console.log(calculateHand(new Hand(['8C', '1C', '5C', '11C', '8D' ]).cards))
 
 export function nobs(hand: FiveCards): Point {
   const [cut, ...fourCards] = hand
 
   let nobs = 0
 
-  for (let card of fourCards) {
-    if (card.value == 11 && card.suit == cut.suit) {
+  for (let card of fourCards)
+    if (card.value == 11 && card.suit == cut.suit)
       nobs++
-    }
-  }
 
   return nobs
 }
@@ -54,32 +54,34 @@ export function flush(hand: FiveCards): Point {
 }
 
 export function kinds(hand: FiveCards): Point {
-  let score: Point = 0;
+  let score: Point = 0
   const values = hand.map(card => card.value)
   const sortedValues = values.sort((a, b) => a - b)
   const groupedValues = group(sortedValues)
 
   for (const group of groupedValues) {
     if (group.length == 2) {
-      score += 2;
+      score += 2
     }
 
     if (group.length == 3) {
-      score += 6;
+      score += 6
     }
 
     if (group.length == 4) {
-      score += 12;
+      score += 12
     }
   }
 
-  return score;
+  return score
+}
+
+
+function fifteens(hand: FiveCards): Point {
+  throw new Error("Function not implemented.")
 }
 
 function straights(hand: FiveCards): Point {
   throw new Error("Function not implemented.")
 }
 
-function fifteens(hand: FiveCards): Point {
-  throw new Error("Function not implemented.")
-}
