@@ -54,7 +54,7 @@ export function flush(hand: FiveCards): Point {
 }
 
 export function kinds(hand: FiveCards): Point {
-  let score = 0;
+  let score: Point = 0;
   const values = hand.map(card => card.value)
   const sortedValues = values.sort((a, b) => a - b)
   const groupedValues = group(sortedValues)
