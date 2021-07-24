@@ -1,3 +1,6 @@
+
+import isEqual from 'lodash.isequal';
+
 export type Point = number;
 export type Suit = "H" | "S" | "D" | "C";
 type Value = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
@@ -19,26 +22,28 @@ class Card {
   }
 
   toString(): CardStr {
-    return `${this.value}${this.suit}`
+    return `${this.value}${this.suit}` as CardStr
   }
 }
 
 export class Hand {
-  cards: Array<CardObj>;
+  cards: CardObj[];
 
   constructor(cards: FiveCardsStr) {
-    let cardArr: Array<CardObj> = []
-    if (cards.length > 5) {
-      throw new Error("Cribbage only allows for 5 cards");
+    let cardArr: CardObj[] = []
+
+    if (cards.length < 5 || cards.length > 5) {
+      throw new Error("A cribbage hand must have 5 cards");
     }
 
     for (const card of cards) {
 
-      if (this.cardIsInHand(card)) {
+      let newCard: CardObj = new Card(card);
+
+      // passing the cardArr is a  IMHO
+      if (this.cardIsInHand(newCard, cardArr)) {
         throw new Error("Can only have unique cards");
       }
-
-      let newCard: CardObj = new Card(card);
 
       cardArr.push(newCard)
     }
@@ -46,12 +51,12 @@ export class Hand {
     this.cards = [...cardArr]
   }
 
-  cardIsInHand(card: CardStr): boolean {
+  cardIsInHand(card: CardObj, cardArr: CardObj[]): boolean {
     let hasCard = false
 
-    for (let cardInHand in this.cards)
-      if (cardInHand.toString() === card) 
-        hasCard = false
+    for (let cardInHand of cardArr)
+      if (isEqual(card, cardInHand)) 
+        hasCard = true
     
     return hasCard
   }
