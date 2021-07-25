@@ -1,4 +1,4 @@
-import { group } from "./helper"
+import { combos, group } from "./helper"
 import { FiveCards, Hand, Point, Suit } from "./types"
 
 function calculateHand(hand: FiveCards): Point {
@@ -7,13 +7,11 @@ function calculateHand(hand: FiveCards): Point {
   points += nobs(hand)
   points += flush(hand)
   points += kinds(hand)
-  // points += fifteens(hand)
+  points += fifteens(hand)
   // points += straights(hand)
 
   return points
 }
-
-console.log(calculateHand(new Hand(['8C', '1C', '5C', '11C', '8D' ]).cards))
 
 export function nobs(hand: FiveCards): Point {
   const [cut, ...fourCards] = hand
@@ -77,8 +75,25 @@ export function kinds(hand: FiveCards): Point {
 }
 
 
-function fifteens(hand: FiveCards): Point {
-  throw new Error("Function not implemented.")
+/**
+ * Check every combinations of cards and see if it adds up to 15
+ * Face cards are considered 10
+ * Ignore any combination that doesn't have at least 2 elements
+ * @param hand 
+ * @returns Points
+ */
+export function fifteens(hand: FiveCards): Point {
+  const values = hand.map(card => card.value)
+  const valuesToTen = values.map(value => value > 10 ? 10 : value)
+
+  const combinations = combos(valuesToTen)
+  const pairedCombos = combinations.filter(combo => combo.length >= 2)
+
+  const sums = pairedCombos.map(combo => combo.reduce((acc, item) => acc += item))
+
+  const fifteens = sums.filter(sum => sum === 15)
+
+  return fifteens.length * 2
 }
 
 function straights(hand: FiveCards): Point {

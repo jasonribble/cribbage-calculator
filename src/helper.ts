@@ -1,3 +1,4 @@
+// TODO: Make generic
 export function group(values: number[]): number[][] {
   let matrix: number[][] = [[]]
 
@@ -24,4 +25,17 @@ export function group(values: number[]): number[][] {
   }
 
   return matrix.slice(1)
+}
+
+// TODO: Make generic
+export function combos(values: number[]): number[][] {
+  if(values.length ===0) return [[]]
+
+  const [first, ...rest] = values
+
+  const combosWithoutFirst = combos(rest)
+  const combosWithFirst = combosWithoutFirst.map(combo => [...combo, first])
+
+  return [...combosWithoutFirst, ...combosWithFirst]
+
 }

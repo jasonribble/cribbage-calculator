@@ -1,4 +1,4 @@
-import { flush, nobs, kinds } from "../src/app";
+import { flush, nobs, kinds, fifteens } from "../src/app";
 import { FiveCards, Hand } from "../src/types"
 
 describe('Nobs', () => {
@@ -50,5 +50,37 @@ describe('Kinds', () => {
   it('12 points for four of a kind', () => {
     const fourOfAKind: FiveCards = new Hand([ '10H', '10C', '10D', '10S', '11D' ]).cards
     expect(kinds(fourOfAKind)).toBe(12)
+  })
+})
+
+describe('Fifteens', () => {
+  it('2 points if all of the cards add up to 15', () => {
+    const handThatSumsToFifteen = new Hand(['2C', '3C', '4D', '1C', '5D']).cards
+    expect(fifteens(handThatSumsToFifteen)).toBe(2)
+  })
+
+  it('2 points if four of the cards add up to 15', () => {
+    const fourCardsSumToFifteen = new Hand(['4C', '4D', '2C', '5D', '1D']).cards
+    expect(fifteens(fourCardsSumToFifteen)).toBe(2)
+  })
+
+  it('4 points with two 8s and one 7', () => {
+    const two8sAndOne7 = new Hand(['8C', '8D', '7D', '10C', '12C']).cards
+    expect(fifteens(two8sAndOne7)).toBe(4)
+  })
+
+  it('4 points with two 8s and one 7', () => {
+    const two8sAndOne7 = new Hand(['8C', '8D', '7D', '10C', '12C']).cards
+    expect(fifteens(two8sAndOne7)).toBe(4)
+  })
+
+  it('8 points with two 4s, two Aces, one King', () => {
+    const two4sTwoAcesOneKing = new Hand(['4C','1D','4S','11D','1H']).cards
+    expect(fifteens(two4sTwoAcesOneKing)).toBe(8)
+  })
+
+  it('16 points with four 5s and a king', () => {
+    const four5sAndKing = new Hand(['5H','5D','5C','5S','13H']).cards
+    expect(fifteens(four5sAndKing)).toBe(16)
   })
 })

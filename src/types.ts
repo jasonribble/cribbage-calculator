@@ -40,7 +40,7 @@ export class Hand {
 
       let newCard: CardObj = new Card(card);
 
-      // passing the cardArr is a  IMHO
+      // passing the cardArr is a strange IMHO
       if (this.cardIsInHand(newCard, cardArr)) {
         throw new Error("Can only have unique cards");
       }

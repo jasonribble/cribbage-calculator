@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@types/jest': ^26.0.24
+  '@types/lodash.isequal': ^4.5.5
   jest: ^27.0.6
   lodash.isequal: ^4.5.0
   ts-jest: ^27.0.3
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   '@types/jest': 26.0.24
+  '@types/lodash.isequal': 4.5.5
   jest: 27.0.6
   lodash.isequal: 4.5.0
   ts-jest: 27.0.3_jest@27.0.6+typescript@4.3.5
@@ -652,6 +654,16 @@ packages:
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
+    dev: false
+
+  /@types/lodash.isequal/4.5.5:
+    resolution: {integrity: sha512-4IKbinG7MGP131wRfceK6W4E/Qt3qssEFLF30LnJbjYiSfHGGRU/Io8YxXrZX109ir+iDETC8hw8QsDijukUVg==}
+    dependencies:
+      '@types/lodash': 4.14.171
+    dev: false
+
+  /@types/lodash/4.14.171:
+    resolution: {integrity: sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==}
     dev: false
 
   /@types/node/16.3.3:
