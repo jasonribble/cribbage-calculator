@@ -1,4 +1,4 @@
-import { flush, nobs, kinds, fifteens } from "../src/app";
+import { flush, nobs, kinds, fifteens, straights } from "../src/app";
 import { FiveCards, Hand } from "../src/types"
 
 describe('Nobs', () => {
@@ -82,5 +82,27 @@ describe('Fifteens', () => {
   it('16 points with four 5s and a king', () => {
     const four5sAndKing = new Hand(['5H','5D','5C','5S','13H']).cards
     expect(fifteens(four5sAndKing)).toBe(16)
+  })
+})
+
+describe('Straights', () => {
+  it("3 points for a straight of three cards", () => {
+    const straightOfThree = new Hand(['10C', '1H', '11D', '12D', '2C']).cards
+    expect(straights(straightOfThree)).toBe(3)
+  })
+
+  it("6 points for a double run (not counting pairs", () => {
+    const doubleRun = new Hand(['2C', '2D','3H', '4H', '9C']).cards
+    expect(straights(doubleRun)).toBe(6)
+  })
+
+  it("12 points two pairs within a straight", () => {
+    const twoPairInAStraight = new  Hand(['2C', '2D', '3H', '4H', '3D']).cards
+    expect(straights(twoPairInAStraight)).toBe(12)
+  })
+
+  it("9 points for three of kind within a straight", () => {
+    const threeOfAKindInAStraight = new  Hand(['2D', '2C', '3H', '4H', '2H']).cards
+    expect(straights(threeOfAKindInAStraight)).toBe(9)
   })
 })
