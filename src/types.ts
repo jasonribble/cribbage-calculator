@@ -7,7 +7,7 @@ type Value = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 type CardObj = { value: Value; suit: Suit };
 type CardStr = `${Value}${Suit}`;
 export type FiveCards = CardObj[];
-type FiveCardsStr = CardStr[];
+export type FiveCardsStr = CardStr[];
 
 class Card {
   value: Value;

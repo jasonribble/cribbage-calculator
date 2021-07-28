@@ -1,8 +1,8 @@
 import { combos, group } from "./helper"
 import { FiveCards, Point, Suit } from "./types"
 
-function calculateHand(hand: FiveCards): Point {
-  let points: Point
+export function calculateHand(hand: FiveCards): Point {
+  let points: Point = 0
 
   points += nobs(hand)
   points += flush(hand)
