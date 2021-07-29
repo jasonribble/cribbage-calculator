@@ -27,7 +27,7 @@ export const zeroPoints: HandWithPoints = {
 
 // 10 points (3 fifteens - 6, a run of 3 - 3, and a nob – 1)
 export const redditExample1: HandWithPoints = {
-  hand: ['5D','12S','11C','13H','1C'],
+  hand: ['5D','12S','11D','13H','1C'],
   points: 10
 }
 

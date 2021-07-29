@@ -1,4 +1,5 @@
 import { flush, nobs, kinds, fifteens, straights } from "../src/app";
+import { redditExample3 } from "../src/hands";
 import { FiveCards, Hand } from "../src/types"
 
 describe('Nobs', () => {
@@ -20,12 +21,12 @@ describe('Flushes', () => {
     expect(flush(noFlushHand)).toBe(0)
   })
 
-  it('4 points if there are 4 out of the 5 of the same suit', () => {
-    const fourFlushHand: FiveCards = new Hand([ '8C', '11C', '5C', '12C', '7H' ]).cards
+  it('4 points if there are 4 of the same suit in the hand', () => {
+    const fourFlushHand: FiveCards = new Hand([ '8H', '11C', '5C', '12C', '7C' ]).cards
     expect(flush(fourFlushHand)).toBe(4)
   })
 
-  it('5 points if it has 5 of the same suit', () => {
+  it('5 points if it has 5 of the same suit, including the cut', () => {
     const fullFlushHand: FiveCards = new Hand(['8C', '1C', '5C', '11C', '7C' ]).cards
     expect(flush(fullFlushHand)).toBe(5)
   })
@@ -54,6 +55,12 @@ describe('Kinds', () => {
 })
 
 describe('Fifteens', () => {
+
+  it(`${redditExample3.points} points for two fifteens`, () => {
+    const twoFifteens = new Hand(redditExample3.hand).cards
+    expect(fifteens(twoFifteens)).toBe(4)
+  })
+
   it('2 points if all of the cards add up to 15', () => {
     const handThatSumsToFifteen = new Hand(['2C', '3C', '4D', '1C', '5D']).cards
     expect(fifteens(handThatSumsToFifteen)).toBe(2)

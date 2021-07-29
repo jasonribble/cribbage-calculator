@@ -34,14 +34,20 @@ export function flush(hand: FiveCards): Point {
   let hasFlush: boolean
   let flushSuit: Suit
 
+  let [cut, ...fourCards] = hand
+
   // console.log(map[hand[0].suit]++)
-  for (const card of hand) {
+  for (const card of fourCards) {
     map[card.suit] = ++map[card.suit]
 
     if (map[card.suit] >= 4) {
       flushSuit = card.suit
       hasFlush = true
     }
+  }
+
+  if(hasFlush && flushSuit === cut.suit) {
+     map[flushSuit] = ++map[flushSuit]
   }
 
   // I wonder if I can remove this conditional
