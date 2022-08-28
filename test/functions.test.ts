@@ -1,4 +1,8 @@
-import { flush, nobs, kinds, fifteens, straights } from "../src/app";
+import { straights } from "../src/scoring/straights";
+import { fifteens } from "../src/scoring/fifteens";
+import { kinds } from "../src/scoring/kinds";
+import { flush } from "../src/scoring/flush";
+import { nobs } from "../src/scoring/nobs";
 import { redditExample3 } from "../src/hands";
 import { FiveCards, Hand } from "../src/types";
 

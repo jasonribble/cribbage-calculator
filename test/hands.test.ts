@@ -1,4 +1,4 @@
-import { calculateHand } from "../src/app";
+import { calculateHand } from "../src/scoring";
 import {
   knobsWithThreeFifteens,
   redditExample1,
