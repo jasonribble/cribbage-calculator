@@ -16,9 +16,7 @@ export function fifteens(hand: FiveCards): Point {
   const combinations = combos(valuesToTen);
   const pairedCombos = combinations.filter((combo) => combo.length >= 2);
 
-  const sums = pairedCombos.map((combo) =>
-    combo.reduce((acc, item) => (acc += item))
-  );
+  const sums = pairedCombos.map((combo) => combo.reduce((acc, item) => (acc += item)));
 
   const fifteens = sums.filter((sum) => sum === 15);
 

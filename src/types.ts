@@ -52,8 +52,11 @@ export class Hand {
   cardIsInHand(card: CardObj, cardArr: CardObj[]): boolean {
     let hasCard = false;
 
-    for (let cardInHand of cardArr)
-      if (isEqual(card, cardInHand)) hasCard = true;
+    for (let cardInHand of cardArr) {
+      if (isEqual(card, cardInHand)) {
+        hasCard = true;
+      }
+    }
 
     return hasCard;
   }

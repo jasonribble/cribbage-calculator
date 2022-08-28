@@ -6,9 +6,7 @@ describe("Hand class", () => {
   });
 
   it("throws an error if it has more than five cards", () => {
-    expect(
-      () => new Hand(["8C", "11C", "5H", "1D", "10D", "11H"])
-    ).toThrowError();
+    expect(() => new Hand(["8C", "11C", "5H", "1D", "10D", "11H"])).toThrowError();
   });
 
   it("throws an error if it has a duplicate", () => {
