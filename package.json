@@ -8,7 +8,7 @@
     "test": "tsc && jest",
     "test:watch": "jest --watch",
     "clean": "rm -rf build",
-    "dev": "npm run clean && ts-node-dev --project tsconfig.json --respawn --transpile-only src/index.ts",
+    "dev": "npm run clean && ts-node-dev --project tsconfig.json --respawn --transpile-only src/app.ts",
     "format": "prettier src test --write"
   },
   "repository": {
