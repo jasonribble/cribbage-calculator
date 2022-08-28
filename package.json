@@ -8,7 +8,8 @@
     "test": "tsc && jest",
     "test:watch": "jest --watch",
     "clean": "rm -rf build",
-    "dev": "npm run clean && ts-node-dev --project tsconfig.json --respawn --transpile-only src/index.ts"
+    "dev": "npm run clean && ts-node-dev --project tsconfig.json --respawn --transpile-only src/index.ts",
+    "format": "prettier src test --write"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/jasonribble.com/cribbage-calculator#readme",
   "devDependencies": {
+    "prettier": "^2.7.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   },
